@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Sanwariya Sweets | श्री साँवरिया स्वीट्स - Maktampur, Bharuch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Rozha+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --maroon-dark: #2c0609;
+            --maroon-main: #4a0a0f;
+            --maroon-light: #691219;
+            --gold-main: #d4a359;
+            --gold-light: #f3d49c;
+            --cream-bg: #fdf8ee;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--cream-bg);
+            color: #2b1113;
+            scroll-behavior: smooth;
+        }
+        .font-serif-royal {
+            font-family: 'Playfair Display', serif;
+        }
+        .font-hindi {
+            font-family: 'Rozha One', serif;
+        }
+        .bg-hero-gradient {
+            background: radial-gradient(circle at top right, #5e0d14 0%, #38060a 55%, #240306 100%);
+        }
+        .gold-pill {
+            background: linear-gradient(135deg, #e5b96e 0%, #c89242 100%);
+            color: #2c0609;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 163, 89, 0.25);
+            backdrop-filter: blur(8px);
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 24s linear infinite;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Sticky Navbar -->
+    <header class="sticky top-0 z-50 bg-[#3a070b] border-b border-[#d4a359]/25 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <button onclick="toggleSidebar()" class="text-[#f3d49c] text-xl p-2 hover:bg-white/10 rounded-lg transition">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <a href="#home" class="flex items-center gap-3">
+                    <!-- Logo Box (Replace src with 'logo.jpg' if saved in same folder) -->
+                    <div class="bg-[#fdf8ee] px-2.5 py-1 rounded-xl border border-[#d4a359] flex items-center gap-1.5 shadow">
+                        <img src="1000355442.jpg" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='flex';" alt="Shree Sanwariya Sweets" class="h-9 w-auto object-contain">
+                        <div id="fallback-logo" style="display:none;" class="items-center gap-1">
+                            <i class="fas fa-feather-alt text-emerald-700 text-lg"></i>
+                            <div class="leading-none">
+                                <span class="font-hindi text-[#d9531e] text-base block">श्री साँवरिया</span>
+                                <span class="text-[9px] text-[#691219] font-bold tracking-wider block">स्वीट्स • मारवाड़ री मिठास</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="hidden md:flex items-center gap-6 text-sm text-[#f3d49c]/90 font-medium">
+                <a href="#home" class="hover:text-white transition">Home</a>
+                <a href="#categories" class="hover:text-white transition">Categories</a>
+                <a href="#catalogue" class="hover:text-white transition">Mithai Catalogue</a>
+                <a href="#bulk" class="hover:text-white transition">Bulk Enquiry</a>
+                <a href="#contact" class="hover:text-white transition">Visit Us</a>
+            </div>
+
+            <button onclick="toggleCart()" class="relative gold-pill px-3.5 py-2 rounded-xl font-bold text-sm shadow-md flex items-center gap-2 hover:opacity-95 transition">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="hidden sm:inline">My Thali</span>
+                <span id="cart-badge" class="bg-[#3a070b] text-[#f3d49c] text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Sidebar Drawer -->
+    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 z-50 hidden"></div>
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-[#4a0a0f] text-[#f3d49c] z-50 transform -translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between border-r border-[#d4a359]/30">
+        <div>
+            <div class="flex justify-between items-center pb-6 border-b border-[#d4a359]/20">
+                <span class="font-serif-royal text-lg font-bold text-[#f3d49c]">Shree Sanwariya Sweets</span>
+                <button onclick="toggleSidebar()" class="text-[#f3d49c] text-xl"><i class="fas fa-times"></i></button>
+            </div>
+            <nav class="mt-6 space-y-2 text-sm font-medium">
+                <a href="#home" onclick="toggleSidebar()" class="block px-4 py-3 rounded-xl bg-[#691219] text-white">Home</a>
+                <a href="#catalogue" onclick="toggleSidebar()" class="block px-4 py-3 rounded-xl hover:bg-white/10 transition">Mithai Catalogue</a>
+                <a href="#categories" onclick="toggleSidebar()" class="block px-4 py-3 rounded-xl hover:bg-white/10 transition">Shop by Category</a>
+                <a href="#bulk" onclick="toggleSidebar()" class="block px-4 py-3 rounded-xl hover:bg-white/10 transition">Bulk & Wedding Enquiry</a>
+                <a href="#contact" onclick="toggleSidebar()" class="block px-4 py-3 rounded-xl hover:bg-white/10 transition">Contact & Location</a>
+            </nav>
+        </div>
+        <div class="text-xs text-[#f3d49c]/70 border-t border-[#d4a359]/20 pt-4">
+            <p class="font-semibold text-[#f3d49c]">मारवाड़ री मिठास</p>
+            <p class="mt-1">Maktampur, Bharuch • Since 1978</p>
+        </div>
+    </aside>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-hero-gradient text-white pt-10 pb-14 px-4">
+        <div class="max-w-5xl mx-auto">
+            <!-- Location Pill -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#d4a359]/40 bg-[#4a0a0f]/60 text-[#f3d49c] text-xs font-medium mb-6">
+                <i class="fas fa-map-marker-alt text-[#d4a359]"></i>
+                <span>Since 1978 · Maktampur, Bharuch</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="font-serif-royal text-4xl sm:text-6xl font-bold leading-tight text-[#fff8eb]">
+                Shree Sanwariya<br>
+                <span class="text-[#e6b35a] italic">Sweets</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-[#f3d49c] mt-2 font-medium">श्री साँवरिया स्वीट्स <span class="text-sm text-[#d4a359] ml-2">• मारवाड़ री मिठास</span></p>
+
+            <p class="text-[#e8dfd5] text-sm sm:text-base mt-5 max-w-xl leading-relaxed">
+                Pure desi ghee mithai, handcrafted every morning — from everyday cravings to wedding thals and festival hampers. Har Mithaas Mein Apnapan...
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap gap-3.5 mt-7">
+                <a href="#catalogue" class="gold-pill px-6 py-3.5 rounded-full font-bold text-sm shadow-lg flex items-center gap-2 hover:scale-[1.02] transition">
+                    <span>Browse the Mithai Catalogue</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#bulk" class="px-6 py-3.5 rounded-full font-semibold text-sm border border-[#d4a359]/60 text-[#f3d49c] hover:bg-white/10 transition">
+                    Bulk & Wedding Enquiry
+                </a>
+            </div>
+
+            <!-- 4 Trust Feature Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 mt-10">
+                <div class="glass-card p-4 rounded-2xl">
+                    <i class="fas fa-fire-flame-simple text-[#e6b35a] text-lg mb-2"></i>
+                    <h3 class="font-bold text-sm text-white">100% Pure Desi Ghee</h3>
+                    <p class="text-xs text-[#d8c7b8] mt-0.5">शुद्ध देसी घी</p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl">
+                    <i class="fas fa-wand-magic-sparkles text-[#e6b35a] text-lg mb-2"></i>
+                    <h3 class="font-bold text-sm text-white">Handcrafted Daily</h3>
+                    <p class="text-xs text-[#d8c7b8] mt-0.5">Fresh every morning</p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl">
+                    <i class="fas fa-shield-heart text-[#e6b35a] text-lg mb-2"></i>
+                    <h3 class="font-bold text-sm text-white">0 Preservatives</h3>
+                    <p class="text-xs text-[#d8c7b8] mt-0.5">Only ghee, milk & sugar</p>
+                </div>
+                <div class="glass-card p-4 rounded-2xl">
+                    <i class="fas fa-award text-[#e6b35a] text-lg mb-2"></i>
+                    <h3 class="font-bold text-sm text-white">ISO Food Safety</h3>
+                    <p class="text-xs text-[#d8c7b8] mt-0.5">Certified kitchen</p>
+                </div>
+            </div>
+
+            <!-- Digital Visiting Card Banner -->
+            <div class="mt-8 bg-gradient-to-r from-[#fff6e5] via-[#fae8c8] to-[#fff6e5] text-[#3a070b] rounded-3xl p-5 sm:p-7 border-2 border-[#d4a359] shadow-2xl">
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div class="text-center md:text-left">
+                        <div class="inline-block bg-[#691219] text-[#f3d49c] text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+                            ✨ मारवाड़ री मिठास ✨
+                        </div>
+                        <h2 class="font-serif-royal text-2xl sm:text-3xl font-extrabold text-[#5a0b12]">Shree Sanwariya Sweets</h2>
+                        <p class="text-xs sm:text-sm font-semibold text-[#7a1c24] italic mt-1">"Har Mithaas Mein Apnapan..."</p>
+                        <div class="mt-3 inline-block bg-[#4a0a0f] text-[#f3d49c] text-xs font-bold px-4 py-1.5 rounded-full">
+                            Bulk Order Also Accepted
+                        </div>
+                        <p class="text-[11px] text-[#5a0b12] font-semibold mt-2">
+                            • Marriage • Parties • Functions • Corporate Orders • Special Occasions
+                        </p>
+                    </div>
+                    <div class="space-y-2 text-xs sm:text-sm border-t md:border-t-0 md:border-l border-[#d4a359] pt-4 md:pt-0 md:pl-6">
+                        <p class="font-bold text-[#4a0a0f] flex items-center gap-2">
+                            <i class="fas fa-phone-volume text-[#691219]"></i>
+                            <span>9549019008 / 7851949944</span>
+                        </p>
+                        <p class="text-[#3a070b] flex items-start gap-2">
+                            <i class="fas fa-location-dot text-[#691219] mt-1"></i>
+                            <span>Shop No. 1, Avishkar Apartment, Zadeshwar Rd, Near G.E.B. Office, Maktampur, Bharuch, Gujarat 392012</span>
+                        </p>
+                        <p class="text-[#3a070b] flex items-center gap-2">
+                            <i class="fas fa-envelope text-[#691219]"></i>
+                            <span>sssweets44@gmail.com</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Call Pills -->
+            <div class="flex flex-col sm:flex-row justify-center gap-3 mt-6">
+                <a href="tel:+919549019008" class="glass-card py-3 px-6 rounded-full text-center text-[#f3d49c] font-semibold text-sm hover:bg-white/10 transition">
+                    <i class="fas fa-phone mr-2 text-[#e6b35a]"></i> +91 9549019008
+                </a>
+                <a href="tel:+917851949944" class="glass-card py-3 px-6 rounded-full text-center text-[#f3d49c] font-semibold text-sm hover:bg-white/10 transition">
+                    <i class="fas fa-phone mr-2 text-[#e6b35a]"></i> +91 7851949944
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scrolling Marquee Banner -->
+    <div class="bg-[#691219] text-[#f3d49c] py-2.5 border-y border-[#d4a359]/40 overflow-hidden text-xs sm:text-sm font-medium">
+        <div class="animate-marquee">
+            <span class="mx-6">✦ Diwali & Wedding Bulk Bookings</span>
+            <span class="mx-6">✦ Same-Day Fresh City Delivery in Bharuch</span>
+            <span class="mx-6">✦ 100% Pure Desi Ghee Mithai</span>
+            <span class="mx-6">✦ Marwar Ri Mithaas Since 1978</span>
+            <span class="mx-6">✦ Diwali & Wedding Bulk Bookings</span>
+            <span class="mx-6">✦ Same-Day Fresh City Delivery in Bharuch</span>
+            <span class="mx-6">✦ 100% Pure Desi Ghee Mithai</span>
+            <span class="mx-6">✦ Marwar Ri Mithaas Since 1978</span>
+        </div>
+    </div>
+
+    <!-- Shop by Category -->
+    <section id="categories" class="max-w-6xl mx-auto px-4 pt-12 pb-6">
+        <p class="text-xs font-bold tracking-widest uppercase text-[#8c4a27]">THE MITHAI COUNTER</p>
+        <h2 class="font-serif-royal text-3xl sm:text-4xl font-bold text-[#2b1113] mt-1">Shop by Category</h2>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+            <div onclick="selectCategoryAndScroll('ghee')" class="cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm border border-[#e8dccb] hover:shadow-md transition group">
+                <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=600&q=80" alt="Pure Ghee" class="w-full h-32 sm:h-40 object-cover group-hover:scale-105 transition duration-300">
+                <div class="p-3.5">
+                    <h3 class="font-serif-royal font-bold text-base sm:text-lg text-[#2b1113]">Pure Ghee</h3>
+                    <p class="text-xs text-gray-600 mt-0.5">Laddu, jalebi, ghevar & mohanthal in pure cow ghee</p>
+                </div>
+            </div>
+
+            <div onclick="selectCategoryAndScroll('milk')" class="cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm border border-[#e8dccb] hover:shadow-md transition group">
+                <img src="https://images.unsplash.com/photo-1589119908995-c6837fa14848?auto=format&fit=crop&w=600&q=80" alt="Milk & Khoya" class="w-full h-32 sm:h-40 object-cover group-hover:scale-105 transition duration-300">
+                <div class="p-3.5">
+                    <h3 class="font-serif-royal font-bold text-base sm:text-lg text-[#2b1113]">Milk & Khoya</h3>
+                    <p class="text-xs text-gray-600 mt-0.5">Kalakand, peda, barfi & sandesh from fresh khoya</p>
+                </div>
+            </div>
+
+            <div onclick="selectCategoryAndScroll('syrup')" class="cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm border border-[#e8dccb] hover:shadow-md transition group">
+                <img src="https://images.unsplash.com/photo-1593701461250-d7b22dfd3a77?auto=format&fit=crop&w=600&q=80" alt="Syrup Soaked" class="w-full h-32 sm:h-40 object-cover group-hover:scale-105 transition duration-300">
+                <div class="p-3.5">
+                    <h3 class="font-serif-royal font-bold text-base sm:text-lg text-[#2b1113]">Syrup Soaked</h3>
+                    <p class="text-xs text-gray-600 mt-0.5">Rasmalai, rajbhog, gulab jamun & kesar jalebi</p>
+                </div>
+            </div>
+
+            <div onclick="selectCategoryAndScroll('dryfruit')" class="cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm border border-[#e8dccb] hover:shadow-md transition group">
+                <img src="https://images.unsplash.com/photo-1605197584547-c93b1a8e430b?auto=format&fit=crop&w=600&q=80" alt="Dry Fruit" class="w-full h-32 sm:h-40 object-cover group-hover:scale-105 transition duration-300">
+                <div class="p-3.5">
+                    <h3 class="font-serif-royal font-bold text-base sm:text-lg text-[#2b1113]">Dry Fruit</h3>
+                    <p class="text-xs text-gray-600 mt-0.5">Kaju katli, anjeer kasata, kaju roll & badam roll</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Mithai Catalogue Banner -->
+    <section id="catalogue" class="mt-8">
+        <div class="bg-[#4a0a0f] text-white py-10 px-4 text-center border-y-2 border-[#d4a359]">
+            <p class="text-xs tracking-widest uppercase text-[#e6b35a] font-semibold">FRESH DAILY · PURE DESI GHEE</p>
+            <h2 class="font-serif-royal text-3xl sm:text-5xl font-bold mt-1 text-[#fff8eb]">The Mithai Catalogue</h2>
+            <p class="text-xs sm:text-sm text-[#e0d0c1] max-w-md mx-auto mt-2">
+                Pick a weight or piece count, add to your thali — packed fresh on the day of pickup or delivery.
+            </p>
+        </div>
+
+        <!-- Filter Pills & Search Bar -->
+        <div class="max-w-6xl mx-auto px-4 pt-6">
+            <div class="flex flex-wrap gap-2 pb-4">
+                <button onclick="setFilter('all')" id="tab-all" class="cat-tab bg-[#691219] text-white px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition">All (39)</button>
+                <button onclick="setFilter('dryfruit')" id="tab-dryfruit" class="cat-tab bg-white border border-[#d8c7b8] text-[#2b1113] px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition">Dry Fruit</button>
+                <button onclick="setFilter('ghee')" id="tab-ghee" class="cat-tab bg-white border border-[#d8c7b8] text-[#2b1113] px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition">Pure Ghee</button>
+                <button onclick="setFilter('milk')" id="tab-milk" class="cat-tab bg-white border border-[#d8c7b8] text-[#2b1113] px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition">Milk & Khoya</button>
+                <button onclick="setFilter('syrup')" id="tab-syrup" class="cat-tab bg-white border border-[#d8c7b8] text-[#2b1113] px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition">Syrup Soaked</button>
+            </div>
+
+            <div class="relative mb-8">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="search-input" oninput="renderCatalogue()" placeholder="Search mithai (e.g. Kaju Katli, Ghevar, Peda, Rasmalai)..." class="w-full bg-white border border-[#dfcfb9] rounded-full pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-[#691219] shadow-sm">
+            </div>
+
+            <!-- Dynamic Mithai Grid -->
+            <div id="catalogue-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-12"></div>
+        </div>
+    </section>
+
+    <!-- Bulk & Wedding CTA Card -->
+    <section id="bulk" class="max-w-5xl mx-auto px-4 py-8">
+        <div class="bg-hero-gradient text-white rounded-3xl p-7 sm:p-10 text-center border-2 border-[#d4a359]/40 shadow-2xl">
+            <p class="text-xs uppercase tracking-widest text-[#e6b35a] font-semibold">BULK ORDER ALSO ACCEPTED</p>
+            <h2 class="font-serif-royal text-2xl sm:text-4xl font-bold mt-2 max-w-xl mx-auto leading-snug">
+                Weddings, parties, corporate thals — we've got the mithaas covered
+            </h2>
+
+            <div class="flex flex-wrap justify-center gap-2 mt-5">
+                <span class="px-4 py-1.5 rounded-full text-xs bg-[#691219] border border-[#d4a359]/30 text-[#f3d49c]">Marriage</span>
+                <span class="px-4 py-1.5 rounded-full text-xs bg-[#691219] border border-[#d4a359]/30 text-[#f3d49c]">Parties</span>
+                <span class="px-4 py-1.5 rounded-full text-xs bg-[#691219] border border-[#d4a359]/30 text-[#f3d49c]">Functions</span>
+                <span class="px-4 py-1.5 rounded-full text-xs bg-[#691219] border border-[#d4a359]/30 text-[#f3d49c]">Corporate Orders</span>
+                <span class="px-4 py-1.5 rounded-full text-xs bg-[#691219] border border-[#d4a359]/30 text-[#f3d49c]">Special Occasions</span>
+            </div>
+
+            <button onclick="openBulkWhatsApp()" class="mt-7 gold-pill px-8 py-3.5 rounded-full font-bold text-sm shadow-xl inline-flex items-center gap-2 hover:scale-105 transition">
+                <span>Raise a Bulk Enquiry</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-[#240b05] text-[#e8dfd5] pt-12 pb-8 px-4 border-t-2 border-[#d4a359]/40 mt-8">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-white/10">
+            <!-- Col 1 -->
+            <div>
+                <div class="bg-[#fdf8ee] p-3 rounded-2xl inline-block border border-[#d4a359] mb-4">
+                    <span class="font-hindi text-[#d9531e] text-2xl block leading-none">श्री साँवरिया स्वीट्स</span>
+                    <span class="text-[11px] text-[#691219] font-bold tracking-wider block mt-0.5">मारवाड़ री मिठास</span>
+                </div>
+                <h3 class="font-serif-royal italic text-xl text-[#f3d49c]">Har Mithaas Mein Apnapan...</h3>
+                <p class="text-xs sm:text-sm text-[#c7b9ab] mt-2 leading-relaxed">
+                    Handcrafted daily in pure desi ghee — serving Bharuch's festivals, weddings and everyday cravings from Maktampur Zadeshwar Road.
+                </p>
+                <a href="https://www.instagram.com/shree_sanwariya_sweets_/" target="_blank" class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d4a359]/50 text-[#f3d49c] text-xs hover:bg-white/10 transition">
+                    <i class="fab fa-instagram text-base"></i>
+                    <span>@shree_sanwariya_sweets_</span>
+                </a>
+            </div>
+
+            <!-- Col 2 -->
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest text-[#e6b35a] mb-4">QUICK LINKS</h4>
+                <ul class="space-y-2.5 text-sm text-[#e0d0c1]">
+                    <li><a href="#home" class="hover:text-[#f3d49c]">Home</a></li>
+                    <li><a href="#catalogue" class="hover:text-[#f3d49c]">Mithai Catalogue (All 39 Items)</a></li>
+                    <li><a href="#categories" class="hover:text-[#f3d49c]">Shop by Category</a></li>
+                    <li><a href="#bulk" class="hover:text-[#f3d49c]">Bulk & Wedding Enquiry</a></li>
+                    <li><a href="javascript:void(0)" onclick="toggleCart()" class="hover:text-[#f3d49c]">View My Thali (Order Cart)</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3 -->
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest text-[#e6b35a] mb-4">VISIT US</h4>
+                <ul class="space-y-3 text-sm text-[#e0d0c1]">
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-location-dot text-[#e6b35a] mt-1"></i>
+                        <span>Shop No. 1, Avishkar Apartment, Zadeshwar Rd, Near G.E.B. Office, Maktampur, Bharuch, Gujarat - 392012</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-phone text-[#e6b35a]"></i>
+                        <a href="tel:+919549019008" class="hover:text-[#f3d49c]">+91 9549019008</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-phone text-[#e6b35a]"></i>
+                        <a href="tel:+917851949944" class="hover:text-[#f3d49c]">+91 7851949944</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-[#e6b35a]"></i>
+                        <a href="mailto:sssweets44@gmail.com" class="hover:text-[#f3d49c]">sssweets44@gmail.com</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-[#e6b35a]"></i>
+                        <a href="mailto:vijendra.choudhary967@gmail.com" class="hover:text-[#f3d49c]">vijendra.choudhary967@gmail.com</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="far fa-clock text-[#e6b35a]"></i>
+                        <span>Open daily · 8:00 AM – 10:00 PM</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center text-xs text-[#9e8c7c] pt-6">
+            © 2026 Shree Sanwariya Sweets · Pure Desi Ghee Mithai, Bharuch · Har Mithaas Mein Apnapan
+        </div>
+    </footer>
+
+    <!-- Slide-over Thali (Cart) Drawer -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex justify-end">
+        <div class="bg-[#fdf8ee] w-full max-w-md h-full flex flex-col justify-between p-6 shadow-2xl">
+            <div>
+                <div class="flex justify-between items-center border-b border-[#dfcfb9] pb-4">
+                    <div>
+                        <h3 class="font-serif-royal text-2xl font-bold text-[#4a0a0f]">Your Mithai Thali</h3>
+                        <p class="text-xs text-gray-600">Freshly packed from Shree Sanwariya Sweets</p>
+                    </div>
+                    <button onclick="toggleCart()" class="text-gray-500 hover:text-red-700 text-xl"><i class="fas fa-times"></i></button>
+                </div>
+
+                <div id="cart-items" class="my-4 space-y-3 max-h-[48vh] overflow-y-auto pr-1"></div>
+            </div>
+
+            <div class="border-t border-[#dfcfb9] pt-4 space-y-3">
+                <div class="flex justify-between items-center font-bold text-lg text-[#4a0a0f]">
+                    <span>Total Amount:</span>
+                    <span id="cart-total">₹0</span>
+                </div>
+                <input type="text" id="cust-name" placeholder="Your Name (आपका नाम)" class="w-full bg-white border border-[#dfcfb9] rounded-xl px-3.5 py-2.5 text-sm">
+                <input type="text" id="cust-phone" placeholder="Mobile Number & Delivery Address" class="w-full bg-white border border-[#dfcfb9] rounded-xl px-3.5 py-2.5 text-sm">
+                <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg flex items-center justify-center gap-2 transition">
+                    <i class="fab fa-whatsapp text-xl"></i> Order Directly on WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complete JavaScript for All 39 Sweets, Weight Selection & WhatsApp Order -->
+    <script>
+        const WHATSAPP_NUMBER = "919549019008";
+
+        const IMG_KAJU = "https://images.unsplash.com/photo-1605197584547-c93b1a8e430b?auto=format&fit=crop&w=600&q=80";
+        const IMG_LADOO = "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=600&q=80";
+        const IMG_SYRUP = "https://images.unsplash.com/photo-1589119908995-c6837fa14848?auto=format&fit=crop&w=600&q=80";
+        const IMG_JAMUN = "https://images.unsplash.com/photo-1593701461250-d7b22dfd3a77?auto=format&fit=crop&w=600&q=80";
+        const IMG_GHEVAR = "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80";
+        const IMG_ROLL = "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80";
+
+        // All 39 Products with exact rates provided by user
+        const sweetsData = [
+            // Dry Fruit Specials
+            { id: 1, name: "Kaju Katli", hindi: "काजू कतली", rate: 1020, unit: "kg", cat: "dryfruit", badge: "Bestseller", img: IMG_KAJU, desc: "Silk-smooth cashew fudge with a whisper of silver leaf — the box every festival starts with." },
+            { id: 2, name: "Kesar Katli", hindi: "केसर कतली", rate: 1120, unit: "kg", cat: "dryfruit", badge: "Festive Special", img: IMG_KAJU, desc: "Rich cashew fudge infused with pure saffron strands for a royal aroma." },
+            { id: 3, name: "Kaju Roll", hindi: "काजू रोल", rate: 1120, unit: "kg", cat: "dryfruit", badge: "Premium", img: IMG_ROLL, desc: "Hand-rolled cashew cylinder stuffed with crushed pistachios and dry fruits." },
+            { id: 4, name: "Badam Roll", hindi: "बादाम रोल", rate: 580, unit: "kg", cat: "dryfruit", badge: "Popular", img: IMG_ROLL, desc: "Delicate almond & khoya roll rich in nutty flavour and traditional taste." },
+            { id: 5, name: "Anjeer Roll", hindi: "अंजीर रोल", rate: 1180, unit: "kg", cat: "dryfruit", badge: "Healthy Choice", img: IMG_ROLL, desc: "Premium figs blended with cashews, almonds and pistachios." },
+            { id: 6, name: "Anjeer Kasata", hindi: "अंजीर कसाटा", rate: 1240, unit: "kg", cat: "dryfruit", badge: "Royal Special", img: IMG_ROLL, desc: "Multi-layered royal fig and dry fruit delight crafted for grand celebrations." },
+            { id: 7, name: "Anjeer Barfi", hindi: "अंजीर बर्फी", rate: 1200, unit: "kg", cat: "dryfruit", badge: "Rich & Nutty", img: IMG_KAJU, desc: "Soft, chewy fig fudge loaded with crunchy roasted nuts." },
+
+            // Milk & Khoya Barfi / Peda
+            { id: 8, name: "Chocolate Barfi", hindi: "चॉकलेट बर्फी", rate: 600, unit: "kg", cat: "milk", badge: "Kids Favourite", img: IMG_KAJU, desc: "Two-layered fresh mawa barfi topped with rich chocolate fudge." },
+            { id: 9, name: "Mava Barfi", hindi: "मावा बर्फी", rate: 580, unit: "kg", cat: "milk", badge: "Classic", img: IMG_KAJU, desc: "Traditional slow-cooked pure khoya barfi with cardamom notes." },
+            { id: 10, name: "Kalakand", hindi: "कलाकंद", rate: 580, unit: "kg", cat: "milk", badge: "Fresh Daily", img: IMG_KAJU, desc: "Moist, grainy milk cake topped with pistachio slivers." },
+            { id: 11, name: "Khopra Barfi", hindi: "खोपरा बर्फी", rate: 580, unit: "kg", cat: "milk", badge: "Traditional", img: IMG_KAJU, desc: "Freshly grated coconut and mawa fudge scented with elaichi." },
+            { id: 12, name: "Milk Cake", hindi: "मिल्क केक", rate: 580, unit: "kg", cat: "milk", badge: "Alwar Style", img: IMG_KAJU, desc: "Caramelised, slow-simmered granular milk fudge with deep rich flavour." },
+            { id: 13, name: "Tiranga Barfi", hindi: "तिरंगा बर्फी", rate: 580, unit: "kg", cat: "milk", badge: "Special", img: IMG_KAJU, desc: "Three-layered colourful khoya barfi with kesar,ista and elaichi flavours." },
+            { id: 14, name: "Khoya Ball", hindi: "खोया बॉल", rate: 540, unit: "kg", cat: "milk", badge: "Soft & Rich", img: IMG_LADOO, desc: "Melt-in-mouth roundels made from fresh thickened mawa." },
+            { id: 15, name: "Khoya Tikli", hindi: "खोया टिकली", rate: 650, unit: "kg", cat: "milk", badge: "Special", img: IMG_KAJU, desc: "Delicate disc-shaped artisanal khoya sweet garnished with dry fruits." },
+            { id: 16, name: "Khoya Sandesh", hindi: "खोया संदेश", rate: 540, unit: "kg", cat: "milk", badge: "Light & Creamy", img: IMG_SYRUP, desc: "Lightly sweetened chenna and khoya delicacy with saffron hints." },
+            { id: 17, name: "Malai Ladoo", hindi: "मलाई लड्डू", rate: 580, unit: "kg", cat: "milk", badge: "Creamy", img: IMG_LADOO, desc: "Soft white cream and paneer ladoos that melt instantly." },
+            { id: 18, name: "Malai Peda", hindi: "मलाई पेड़ा", rate: 520, unit: "kg", cat: "milk", badge: "Fresh Cream", img: IMG_LADOO, desc: "Rich creamy pedas made from slow-reduced full cream milk." },
+            { id: 19, name: "Mathura Peda", hindi: "मथुरा पेड़ा", rate: 480, unit: "kg", cat: "milk", badge: "Bhog Special", img: IMG_LADOO, desc: "Caramelised brown khoya pedas dusted with sweet boora sugar." },
+            { id: 20, name: "Chocolate Peda", hindi: "चॉकलेट पेड़ा", rate: 580, unit: "kg", cat: "milk", badge: "Fusion", img: IMG_LADOO, desc: "Traditional mawa peda blended with rich cocoa." },
+            { id: 21, name: "Kesar Peda", hindi: "केसर पेड़ा", rate: 580, unit: "kg", cat: "milk", badge: "Festive", img: IMG_LADOO, desc: "Golden saffron-infused khoya pedas topped with pistachio." },
+            { id: 22, name: "Thabdi Peda", hindi: "थाबड़ी पेड़ा", rate: 500, unit: "kg", cat: "milk", badge: "Kathiyawadi Special", img: IMG_LADOO, desc: "Authentic grainy caramelised milk peda loved across Gujarat." },
+
+            // Pure Desi Ghee Specials
+            { id: 23, name: "Mohanthal", hindi: "मोहनथाल", rate: 560, unit: "kg", cat: "ghee", badge: "Marwadi Pride", img: IMG_KAJU, desc: "Coarse gram flour fudge roasted in pure cow ghee with saffron & nuts." },
+            { id: 24, name: "Motichoor Ladoo", hindi: "मोतीचूर लड्डू", rate: 520, unit: "kg", cat: "ghee", badge: "Pure Ghee", img: IMG_LADOO, desc: "Tiny golden pearls fried in pure desi ghee with melon seeds." },
+            { id: 25, name: "Besan Ladoo", hindi: "बेसन लड्डू", rate: 520, unit: "kg", cat: "ghee", badge: "Home Style", img: IMG_LADOO, desc: "Slow-roasted aromatic gram flour ladoos in pure desi ghee." },
+            { id: 26, name: "Jalebi", hindi: "जलेबी", rate: 480, unit: "kg", cat: "ghee", badge: "Crispy & Hot", img: IMG_GHEVAR, desc: "Crispy spirals fried in pure desi ghee and soaked in saffron syrup." },
+            { id: 27, name: "Imarti", hindi: "इमरती", rate: 580, unit: "kg", cat: "ghee", badge: "Desi Ghee", img: IMG_GHEVAR, desc: "Flower-shaped urad dal delicacy fried in pure ghee and steeped in syrup." },
+            { id: 28, name: "Balushahi", hindi: "बालूशाही", rate: 520, unit: "kg", cat: "ghee", badge: "Flaky & Rich", img: IMG_GHEVAR, desc: "Flaky, glazed Marwadi pastry fried in pure ghee and dipped in sugar syrup." },
+            { id: 29, name: "Malai Ghevar", hindi: "मलाई घेवर", rate: 680, unit: "kg", cat: "ghee", badge: "Rajasthani Royal", img: IMG_GHEVAR, desc: "Honeycomb disc fried in desi ghee and topped with thick kesar rabdi." },
+            { id: 30, name: "Plain Ghevar", hindi: "प्लेन घेवर", rate: 600, unit: "kg", cat: "ghee", badge: "Marwar Special", img: IMG_GHEVAR, desc: "Crispy traditional Rajasthani honeycomb sweet soaked in light sugar syrup." },
+
+            // Syrup Soaked & Bengali Sweets (Kg & Piece)
+            { id: 31, name: "Malayi Chamcham", hindi: "मलाई चमचम", rate: 550, unit: "kg", cat: "syrup", badge: "Bengali Special", img: IMG_SYRUP, desc: "Soft chenna oblongs stuffed with fresh malai and garnished with pista." },
+            { id: 32, name: "Rasmadhuri", hindi: "रसमाधुरी", rate: 520, unit: "kg", cat: "syrup", badge: "Chef Special", img: IMG_SYRUP, desc: "Stuffed chenna delicacy dunked in thick saffron-cardamom milk." },
+            { id: 33, name: "Angoor Rabdi", hindi: "अंगूर रबड़ी", rate: 520, unit: "kg", cat: "syrup", badge: "Chilled Delight", img: IMG_SYRUP, desc: "Miniature chenna pearls floating in rich, chilled kesar-pista rabdi." },
+            { id: 34, name: "Malai Rocket", hindi: "मलाई रॉकेट", rate: 580, unit: "kg", cat: "syrup", badge: "Cream Roll", img: IMG_SYRUP, desc: "Cylindrical chenna sweet filled with rich khoya-malai cream." },
+            { id: 35, name: "Rajbhog", hindi: "राजभोग", rate: 50, unit: "pc", cat: "syrup", badge: "₹50 / Piece", img: IMG_SYRUP, desc: "Jumbo saffron-infused chenna balls stuffed with dry fruits." },
+            { id: 36, name: "Rasmalai", hindi: "रस मलाई", rate: 40, unit: "pc", cat: "syrup", badge: "₹40 / Piece", img: IMG_SYRUP, desc: "Cloud-soft chenna discs steeped in saffron-thickened rabri with almonds." },
+            { id: 37, name: "Rasgulla", hindi: "रसगुल्ला", rate: 25, unit: "pc", cat: "syrup", badge: "₹25 / Piece", img: IMG_SYRUP, desc: "Spongy snow-white cottage cheese dumplings in light sugar syrup." },
+            { id: 38, name: "Kala Jamun", hindi: "काला जामुन", rate: 30, unit: "pc", cat: "syrup", badge: "₹30 / Piece", img: IMG_JAMUN, desc: "Dark caramelised khoya dumplings with a juicy cardamom centre." },
+            { id: 39, name: "Gulab Jamun", hindi: "गुलाब जामुन", rate: 25, unit: "pc", cat: "syrup", badge: "₹25 / Piece", img: IMG_JAMUN, desc: "Golden khoya-paneer dumplings soaked in warm rose-cardamom syrup." }
+        ];
+
+        // Track selected option & quantity per item
+        const itemState = {};
+        sweetsData.forEach(item => {
+            itemState[item.id] = {
+                multiplier: item.unit === 'kg' ? 0.5 : 2, // default 500g for kg, 2 pcs for pc
+                label: item.unit === 'kg' ? '500 g' : '2 pcs',
+                qty: 1
+            };
+        });
+
+        let currentFilter = 'all';
+        let cart = [];
+
+        function setFilter(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.cat-tab').forEach(btn => {
+                btn.className = "cat-tab bg-white border border-[#d8c7b8] text-[#2b1113] px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition";
+            });
+            const activeBtn = document.getElementById('tab-' + cat);
+            if (activeBtn) {
+                activeBtn.className = "cat-tab bg-[#691219] text-white px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition";
+            }
+            renderCatalogue();
+        }
+
+        function selectCategoryAndScroll(cat) {
+            setFilter(cat);
+            document.getElementById('catalogue').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectWeight(id, multiplier, label) {
+            itemState[id].multiplier = multiplier;
+            itemState[id].label = label;
+            renderCatalogue();
+        }
+
+        function changeQty(id, delta) {
+            const next = itemState[id].qty + delta;
+            if (next >= 1) {
+                itemState[id].qty = next;
+                renderCatalogue();
+            }
+        }
+
+        function renderCatalogue() {
+            const grid = document.getElementById('catalogue-grid');
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+
+            const filtered = sweetsData.filter(item => {
+                const matchCat = currentFilter === 'all' || item.cat === currentFilter;
+                const matchSearch = item.name.toLowerCase().includes(query) || item.hindi.includes(query);
+                return matchCat && matchSearch;
+            });
+
+            grid.innerHTML = filtered.map(item => {
+                const st = itemState[item.id];
+                const unitPrice = Math.round(item.rate * st.multiplier);
+                const finalPrice = unitPrice * st.qty;
+
+                const optionsHTML = item.unit === 'kg'
+                    ? `
+                        <button onclick="selectWeight(${item.id}, 0.25, '250 g')" class="flex-1 py-2 rounded-xl text-xs font-bold border transition ${st.label === '250 g' ? 'bg-[#8b261d] text-white border-[#8b261d]' : 'bg-white text-[#2b1113] border-[#dfcfb9]'}">250 g</button>
+                        <button onclick="selectWeight(${item.id}, 0.5, '500 g')" class="flex-1 py-2 rounded-xl text-xs font-bold border transition ${st.label === '500 g' ? 'bg-[#8b261d] text-white border-[#8b261d]' : 'bg-white text-[#2b1113] border-[#dfcfb9]'}">500 g</button>
+                        <button onclick="selectWeight(${item.id}, 1, '1 kg')" class="flex-1 py-2 rounded-xl text-xs font-bold border transition ${st.label === '1 kg' ? 'bg-[#8b261d] text-white border-[#8b261d]' : 'bg-white text-[#2b1113] border-[#dfcfb9]'}">1 kg</button>
+                      `
+                    : `
+                        <button onclick="selectWeight(${item.id}, 1, '1 pc')" class="flex-1 py-2 rounded-xl text-xs font-bold border transition ${st.label === '1 pc' ? 'bg-[#8b261d] text-white border-[#8b261d]' : 'bg-white text-[#2b1113] border-[#dfcfb9]'}">1 pc</button>
+                        <button onclick="selectWeight(${item.id}, 2, '2 pcs')" class="flex-1 py-2 rounded-xl text-xs font-bold border transition ${st.label === '2 pcs' ? 'bg-[#8b261d] text-white border-[#8b261d]' : 'bg-white text-[#2b1113] border-[#dfcfb9]'}">2 pcs</button>
+                        <button onclick="selectWeight(${item.id}, 5, '5 pcs')" class="flex-1 py-2 rounded-xl text-xs font-bold border transition ${st.label === '5 pcs' ? 'bg-[#8b261d] text-white border-[#8b261d]' : 'bg-white text-[#2b1113] border-[#dfcfb9]'}">5 pcs</button>
+                        <button onclick="selectWeight(${item.id}, 10, '10 pcs')" class="flex-1 py-2 rounded-xl text-xs font-bold border transition ${st.label === '10 pcs' ? 'bg-[#8b261d] text-white border-[#8b261d]' : 'bg-white text-[#2b1113] border-[#dfcfb9]'}">10 pcs</button>
+                      `;
+
+                return `
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-[#e8dccb] flex flex-col justify-between hover:shadow-lg transition">
+                        <div>
+                            <div class="relative">
+                                <img src="${item.img}" alt="${item.name}" class="w-full h-52 object-cover">
+                                <span class="absolute top-3 left-3 bg-[#691219] text-[#f3d49c] text-[11px] font-semibold px-3 py-1 rounded-full shadow">${item.badge}</span>
+                                <span class="absolute top-3 right-3 bg-[#fdf8ee] text-emerald-800 text-[11px] font-semibold px-3 py-1 rounded-full shadow">In stock</span>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-serif-royal text-2xl font-bold text-[#2b1113]">${item.name}</h3>
+                                <p class="text-xs text-gray-500 mt-0.5">${item.hindi}</p>
+                                <p class="text-xs text-gray-600 mt-2.5 leading-relaxed">${item.desc}</p>
+
+                                <div class="flex gap-2 mt-4">
+                                    ${optionsHTML}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 pt-2">
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <span class="font-serif-royal text-2xl font-bold text-[#691219]">₹${finalPrice}</span>
+                                    <p class="text-[11px] text-gray-500">for ${st.label} · ₹${item.rate} per ${item.unit}</p>
+                                </div>
+                                <div class="flex items-center border border-[#dfcfb9] rounded-full bg-[#fdf8ee]">
+                                    <button onclick="changeQty(${item.id}, -1)" class="w-8 h-8 text-sm font-bold text-[#4a0a0f]">−</button>
+                                    <span class="px-2 text-sm font-bold">${st.qty}</span>
+                                    <button onclick="changeQty(${item.id}, 1)" class="w-8 h-8 text-sm font-bold text-[#4a0a0f]">+</button>
+                                </div>
+                            </div>
+
+                            <button onclick="addToThali(${item.id})" class="w-full bg-[#691219] hover:bg-[#4a0a0f] text-white font-semibold py-3 rounded-full text-sm shadow transition">
+                                Add to Thali
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function addToThali(id) {
+            const product = sweetsData.find(p => p.id === id);
+            const st = itemState[id];
+            const unitPrice = Math.round(product.rate * st.multiplier);
+            const cartKey = `${product.id}-${st.label}`;
+
+            const existing = cart.find(c => c.key === cartKey);
+            if (existing) {
+                existing.qty += st.qty;
+            } else {
+                cart.push({
+                    key: cartKey,
+                    name: product.name,
+                    hindi: product.hindi,
+                    label: st.label,
+                    unitPrice: unitPrice,
+                    qty: st.qty
+                });
+            }
+            updateCartUI();
+        }
+
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const list = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalCount = cart.reduce((sum, i) => sum + i.qty, 0);
+            const totalPrice = cart.reduce((sum, i) => sum + (i.unitPrice * i.qty), 0);
+
+            badge.innerText = totalCount;
+            totalEl.innerText = `₹${totalPrice}`;
+
+            if (cart.length === 0) {
+                list.innerHTML = `<p class="text-sm text-gray-500 text-center py-10">Your Mithai Thali is empty.<br><span class="text-xs">Add your favourite sweets from the catalogue!</span></p>`;
+                return;
+            }
+
+            list.innerHTML = cart.map((item, idx) => `
+                <div class="bg-white p-3.5 rounded-2xl border border-[#e8dccb] flex justify-between items-center shadow-sm">
+                    <div>
+                        <h4 class="font-bold text-sm text-[#2b1113]">${item.name} <span class="text-xs font-normal text-gray-500">(${item.label})</span></h4>
+                        <p class="text-xs text-gray-600 mt-0.5">₹${item.unitPrice} × ${item.qty} = <b class="text-[#691219]">₹${item.unitPrice * item.qty}</b></p>
+                    </div>
+                    <button onclick="removeCartItem(${idx})" class="text-red-600 hover:text-red-800 p-2">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-modal').classList.toggle('hidden');
+        }
+
+        function toggleSidebar() {
+            const sb = document.getElementById('sidebar');
+            const ov = document.getElementById('sidebar-overlay');
+            sb.classList.toggle('-translate-x-full');
+            ov.classList.toggle('hidden');
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert("Please add some sweets to your Thali first!");
+                return;
+            }
+            const name = document.getElementById('cust-name').value.trim() || "Customer";
+            const phone = document.getElementById('cust-phone').value.trim() || "Pickup / Will share on chat";
+            const total = cart.reduce((sum, i) => sum + (i.unitPrice * i.qty), 0);
+
+            let msg = `🙏 *Namaste Shree Sanwariya Sweets (Bharuch)!*\nI would like to place an order:\n\n`;
+            cart.forEach((item, i) => {
+                msg += `${i + 1}. *${item.name}* (${item.label}) × ${item.qty} = ₹${item.unitPrice * item.qty}\n`;
+            });
+            msg += `\n💰 *Total Bill:* ₹${total}\n👤 *Name:* ${name}\n📍 *Contact/Address:* ${phone}`;
+
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function openBulkWhatsApp() {
+            const msg = `🙏 *Namaste Shree Sanwariya Sweets!*\nI want to enquire about a *Bulk / Wedding / Festival Mithai Order*. Please share details.`;
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // Initial Render
+        renderCatalogue();
+        updateCartUI();
+    </script>
+</body>
+  </html>
+              
